@@ -9,7 +9,6 @@ import {
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { fetchCount } from "./counterAPI";
-import "../node_modules/immer/dist/internal";
 
 export interface CounterState {
   value: number;
@@ -35,7 +34,7 @@ export const incrementAsync = createAsyncThunk(
   }
 );
 
-export const counterSlice = createSlice({
+export const counterSlice: any = createSlice({
   name: "counter",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
@@ -115,4 +114,4 @@ export const incrementIfOdd =
     }
   };
 
-export default counterSlice.reducer;
+export const counterSliceReducer = counterSlice.reducer;
