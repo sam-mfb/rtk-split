@@ -9,6 +9,7 @@ import {
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { fetchCount } from "./counterAPI";
+import "../node_modules/immer/dist/internal";
 
 export interface CounterState {
   value: number;

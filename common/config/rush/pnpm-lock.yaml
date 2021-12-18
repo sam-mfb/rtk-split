@@ -13,6 +13,7 @@ importers:
       '@types/react-dom': ^16.9.14
       '@types/react-redux': ^7.1.20
       copyfiles: ~2.4.1
+      immer: ~9.0.7
       react: ^17.0.2
       react-dom: ^17.0.2
       react-redux: ^7.2.6
@@ -29,6 +30,7 @@ importers:
       '@types/react-dom': 16.9.14
       '@types/react-redux': 7.1.20
       copyfiles: 2.4.1
+      immer: 9.0.7
       rimraf: 3.0.2
       typescript: 4.5.4
 
@@ -5102,7 +5104,6 @@ packages:
 
   /immer/9.0.7:
     resolution: {integrity: sha512-KGllzpbamZDvOIxnmJ0jI840g7Oikx58lBPWV0hUh7dtAyZpFqqrBZdKka5GlTwMTZ1Tjc/bKKW4VSFAt6BqMA==}
-    dev: false
 
   /import-cwd/3.0.0:
     resolution: {integrity: sha512-4pnzH16plW+hgvRECbDWpQl3cqtvSofHWh44met7ESfZ8UZOWWddm8hEyDTqREJ9RbYHY8gi8DqmaelApoOGMg==}
