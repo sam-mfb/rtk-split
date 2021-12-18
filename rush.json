@@ -110,7 +110,7 @@
      *
      * This option is experimental. The default value is false.
      */
-    // "useWorkspaces": true
+     "useWorkspaces": true
   },
 
   /**
@@ -150,7 +150,7 @@
    * version. In those cases, you will need to add an entry to the "allowedAlternativeVersions"
    * section of the common-versions.json.
    */
-  // "ensureConsistentVersions": true,
+   "ensureConsistentVersions": true,
 
   /**
    * Large monorepos can become intimidating for newcomers if project folder paths don't follow
@@ -455,6 +455,10 @@
      {
        "packageName": "main-app",
        "projectFolder": "main-app"
+     },
+     {
+       "packageName": "counter",
+       "projectFolder": "counter"
      }
   ]
 }
