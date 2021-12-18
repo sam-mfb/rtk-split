@@ -3,6 +3,7 @@ import counterReducer from "counter";
 
 export const store = configureStore({
   reducer: {
+    //@ts-ignore
     counter: counterReducer,
   },
 });

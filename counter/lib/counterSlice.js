@@ -35,7 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _a;
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createAsyncThunk, createSlice, } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchCount } from "./counterAPI";
 var initialState = {
     value: 0,
@@ -91,6 +92,17 @@ export var counterSlice = createSlice({
         });
     },
 });
+var localStore = configureStore({
+    reducer: { counter: counterSlice.reducer },
+});
+export var useSliceSelector = useSelector;
+export var useSliceDispatch = function () {
+    return useDispatch();
+};
+export var initializeSlicePackage = function (useAppDispatch, useAppSelector) {
+    useSliceDispatch = useAppDispatch;
+    useSliceSelector = useAppSelector;
+};
 export var increment = (_a = counterSlice.actions, _a.increment), decrement = _a.decrement, incrementByAmount = _a.incrementByAmount;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

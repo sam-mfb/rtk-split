@@ -1,5 +1,13 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
+import {
+  Action,
+  configureStore,
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  ThunkAction,
+  ThunkDispatch,
+} from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { fetchCount } from "./counterAPI";
 
 export interface CounterState {
@@ -59,6 +67,34 @@ export const counterSlice = createSlice({
       });
   },
 });
+
+const localStore = configureStore({
+  reducer: { counter: counterSlice.reducer },
+});
+
+type RootState = { counter: CounterState } & Record<string, any>;
+type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+type SliceDispatch = typeof localStore.dispatch;
+
+export let useSliceSelector: TypedUseSelectorHook<
+  { counter: CounterState } & Record<string, any>
+> = useSelector;
+
+export let useSliceDispatch = () =>
+  useDispatch<SliceDispatch & ThunkDispatch<any, any, any>>();
+
+export const initializeSlicePackage = (
+  useAppDispatch: typeof useSliceDispatch,
+  useAppSelector: typeof useSliceSelector
+) => {
+  useSliceDispatch = useAppDispatch;
+  useSliceSelector = useAppSelector;
+};
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 

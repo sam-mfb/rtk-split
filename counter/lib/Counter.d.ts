@@ -1,2 +1,2 @@
-import "./Counter.module.css";
+import "./Counter.css";
 export declare function Counter(): JSX.Element;
