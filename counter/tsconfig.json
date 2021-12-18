@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "declaration": true,
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "types":["node"]
+  },
+  "include": ["src"]
+}
