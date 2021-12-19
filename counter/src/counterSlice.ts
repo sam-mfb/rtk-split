@@ -10,6 +10,7 @@ import {
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { fetchCount } from "./counterAPI";
 import "immer";
+import "redux-thunk";
 
 export interface CounterState {
   value: number;
@@ -69,26 +70,43 @@ export const counterSlice = createSlice({
   },
 });
 
-const localStore = configureStore({
-  reducer: { counter: counterSlice.reducer },
-});
+// RootStateInterface is defined as including at least this slice and any other slices that
+// might be added by a calling package
+type RootStateInterface = { counter: CounterState } & Record<string, any>;
 
-type RootState = { counter: CounterState } & Record<string, any>;
-type AppThunk<ReturnType = void> = ThunkAction<
+// A version of AppThunk that uses the RootStateInterface just defined
+type AppThunkInterface<ReturnType = void> = ThunkAction<
   ReturnType,
-  RootState,
+  RootStateInterface,
   unknown,
   Action<string>
 >;
-type SliceDispatch = typeof localStore.dispatch;
 
-export let useSliceSelector: TypedUseSelectorHook<
-  { counter: CounterState } & Record<string, any>
-> = useSelector;
+// A version of use selector that includes the RootStateInterface we just defined
+export let useSliceSelector: TypedUseSelectorHook<RootStateInterface> =
+  useSelector;
 
-export let useSliceDispatch = () =>
-  useDispatch<SliceDispatch & ThunkDispatch<any, any, any>>();
+// This function would configure a "local" store if called, but currently it is
+// not called, and is just used for type inference.
+const configureLocalStore = () =>
+  configureStore({
+    reducer: { counter: counterSlice.reducer },
+  });
 
+// Infer the type of the dispatch that would be needed for a store that consisted of
+// just this slice
+type SliceDispatch = ReturnType<typeof configureLocalStore>["dispatch"];
+
+// AppDispatchInterface is defined as including at least this slices "local" dispatch and
+// the dispatch of any slices that might be added by the calling package.
+type AppDispatchInterface = SliceDispatch & ThunkDispatch<any, any, any>;
+
+export let useSliceDispatch = () => useDispatch<AppDispatchInterface>();
+
+// Allows initializing of this package by a calling package with the "global"
+// dispatch and selector hooks of that package, provided they satisfy this packages
+// state and dispatch interfaces--which they will if the imported this package and
+// used it to compose their store.
 export const initializeSlicePackage = (
   useAppDispatch: typeof useSliceDispatch,
   useAppSelector: typeof useSliceSelector
@@ -102,12 +120,12 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.counter.value;
+export const selectCount = (state: RootStateInterface) => state.counter.value;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 export const incrementIfOdd =
-  (amount: number): AppThunk =>
+  (amount: number): AppThunkInterface =>
   (dispatch, getState) => {
     const currentValue = selectCount(getState());
     if (currentValue % 2 === 1) {
