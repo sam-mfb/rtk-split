@@ -9,6 +9,6 @@ npm install @microsoft/rush
 rush install
 rush update
 rush build
-cd ../main-app
+cd ./main-app
 rushx start
 ```
