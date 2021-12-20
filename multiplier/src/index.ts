@@ -1,4 +1,4 @@
 import {Multiplier} from "./Multiplier"
-import {multiplierSliceReducer, initializeSlicePackage} from "./multiplierSlice"
+import {multiplierSliceReducer, initializeSlicePackage, multiplierSliceName} from "./multiplierSlice"
 
-export {Multiplier, multiplierSliceReducer, initializeSlicePackage}
+export {Multiplier, multiplierSliceReducer, initializeSlicePackage, multiplierSliceName}
