@@ -70,20 +70,14 @@ export const counterSlice = createSlice({
   },
 });
 
-// RootStateInterface is defined as including at least this slice and any other slices that
-// might be added by a calling package
-type RootStateInterface = { counter: CounterState };
-
-// A version of AppThunk that uses the RootStateInterface just defined
+type CounterStateInterface = { counter: CounterState };
 type AppThunkInterface<ReturnType = void> = ThunkAction<
   ReturnType,
-  RootStateInterface,
+  CounterStateInterface,
   unknown,
   Action<string>
 >;
-
-// A version of use selector that includes the RootStateInterface we just defined
-export let useSliceSelector: TypedUseSelectorHook<RootStateInterface> =
+export let useSliceSelector: TypedUseSelectorHook<CounterStateInterface> =
   useSelector;
 
 // This function would configure a "local" store if called, but currently it is
@@ -120,7 +114,7 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootStateInterface) => state.counter.value;
+export const selectCount = (state: CounterStateInterface) => state.counter.value;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

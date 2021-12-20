@@ -29,9 +29,8 @@ export const multiplierSlice = createSlice({
   },
 });
 
-type RootStateInterface = { multiplier: MultiplierState };
-
-export let useSliceSelector: TypedUseSelectorHook<RootStateInterface> =
+type MultiplierStateInterface = { multiplier: MultiplierState };
+export let useSliceSelector: TypedUseSelectorHook<MultiplierStateInterface> =
   useSelector;
 
 const configureLocalStore = () =>
@@ -53,5 +52,5 @@ export const initializeSlicePackage = (
 };
 
 export const { multiplyByAmount, resetValue } = multiplierSlice.actions;
-export const selectMultiplierValue = (state: RootStateInterface) => state.multiplier.value;
+export const selectMultiplierValue = (state: MultiplierStateInterface) => state.multiplier.value;
 export const multiplierSliceReducer = multiplierSlice.reducer;
