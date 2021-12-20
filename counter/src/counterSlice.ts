@@ -72,7 +72,7 @@ export const counterSlice = createSlice({
 
 // RootStateInterface is defined as including at least this slice and any other slices that
 // might be added by a calling package
-type RootStateInterface = { counter: CounterState } & Record<string, any>;
+type RootStateInterface = { counter: CounterState };
 
 // A version of AppThunk that uses the RootStateInterface just defined
 type AppThunkInterface<ReturnType = void> = ThunkAction<
@@ -99,7 +99,7 @@ type SliceDispatch = ReturnType<typeof configureLocalStore>["dispatch"];
 
 // AppDispatchInterface is defined as including at least this slices "local" dispatch and
 // the dispatch of any slices that might be added by the calling package.
-type AppDispatchInterface = SliceDispatch & ThunkDispatch<any, any, any>;
+type AppDispatchInterface = SliceDispatch;
 
 export let useSliceDispatch = () => useDispatch<AppDispatchInterface>();
 
