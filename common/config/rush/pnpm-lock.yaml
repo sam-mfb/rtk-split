@@ -53,6 +53,7 @@ importers:
       '@types/react-redux': ^7.1.20
       autoprefixer: ~10.4.0
       counter: workspace:*
+      multiplier: workspace:*
       postcss: ~8.4.5
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -75,6 +76,7 @@ importers:
       '@types/react-redux': 7.1.20
       autoprefixer: 10.4.0_postcss@8.4.5
       counter: link:../counter
+      multiplier: link:../multiplier
       postcss: 8.4.5
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -90,6 +92,7 @@ importers:
       '@types/react-dom': ^16.9.14
       '@types/react-redux': ^7.1.20
       copyfiles: ~2.4.1
+      counter: workspace:*
       immer: ~9.0.7
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -99,6 +102,7 @@ importers:
       typescript: ^4.5.4
     dependencies:
       '@reduxjs/toolkit': 1.7.1_react-redux@7.2.6+react@17.0.2
+      counter: link:../counter
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
