@@ -5,7 +5,6 @@ import {
   createSlice,
   PayloadAction,
   ThunkAction,
-  ThunkDispatch,
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { fetchCount } from "./counterAPI";
