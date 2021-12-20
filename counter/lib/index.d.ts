@@ -1,3 +1,3 @@
-export * from "./counterAPI";
-export * from "./Counter";
-export * from "./counterSlice";
+import { Counter } from "./Counter";
+import { counterSliceReducer, initializeSlicePackage } from "./counterSlice";
+export { Counter, counterSliceReducer, initializeSlicePackage };
