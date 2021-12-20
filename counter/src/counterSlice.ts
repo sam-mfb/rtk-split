@@ -71,7 +71,7 @@ export const counterSlice = createSlice({
 });
 
 type CounterStateInterface = { counter: CounterState };
-type AppThunkInterface<ReturnType = void> = ThunkAction<
+type SliceThunkInterface<ReturnType = void> = ThunkAction<
   ReturnType,
   CounterStateInterface,
   unknown,
@@ -91,11 +91,7 @@ const configureLocalStore = () =>
 // just this slice
 type SliceDispatch = ReturnType<typeof configureLocalStore>["dispatch"];
 
-// AppDispatchInterface is defined as including at least this slices "local" dispatch and
-// the dispatch of any slices that might be added by the calling package.
-type AppDispatchInterface = SliceDispatch;
-
-export let useSliceDispatch = () => useDispatch<AppDispatchInterface>();
+export let useSliceDispatch = () => useDispatch<SliceDispatch>();
 
 // Allows initializing of this package by a calling package with the "global"
 // dispatch and selector hooks of that package, provided they satisfy this packages
@@ -119,7 +115,7 @@ export const selectCount = (state: CounterStateInterface) => state.counter.value
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 export const incrementIfOdd =
-  (amount: number): AppThunkInterface =>
+  (amount: number): SliceThunkInterface =>
   (dispatch, getState) => {
     const currentValue = selectCount(getState());
     if (currentValue % 2 === 1) {

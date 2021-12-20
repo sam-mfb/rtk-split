@@ -39,9 +39,7 @@ const configureLocalStore = () =>
   });
 
 type SliceDispatch = ReturnType<typeof configureLocalStore>["dispatch"];
-type AppDispatchInterface = SliceDispatch;
-
-export let useSliceDispatch = () => useDispatch<AppDispatchInterface>();
+export let useSliceDispatch = () => useDispatch<SliceDispatch>();
 
 export const initializeSlicePackage = (
   useAppDispatch: typeof useSliceDispatch,
