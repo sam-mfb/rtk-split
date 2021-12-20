@@ -459,6 +459,10 @@
      {
        "packageName": "counter",
        "projectFolder": "counter"
+     },
+     {
+       "packageName": "multiplier",
+       "projectFolder": "multiplier"
      }
   ]
 }
