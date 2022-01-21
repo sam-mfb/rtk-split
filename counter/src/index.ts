@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useSliceDispatch, useSliceSelector} from "./counterSlice"
 import { Counter } from "./Counter";
 import { counterSliceReducer, initializeSlicePackage, counterSliceName, selectCount, incrementByAmount } from "./counterSlice";
 
@@ -7,11 +7,11 @@ import { counterSliceReducer, initializeSlicePackage, counterSliceName, selectCo
 */
 
 function useCurrentCountValue() {
-    const currentCountValue = useSelector(selectCount)
+    const currentCountValue = useSliceSelector(selectCount)
     return currentCountValue
 }
 function useCountIncrementor() {
-    const dispatch = useDispatch()
+    const dispatch = useSliceDispatch()
     return (amount: number) => {
         dispatch(incrementByAmount(amount))
     }
