@@ -52,7 +52,7 @@ export function Counter() {
           Add Amount
         </button>
         <button
-          className="asyncButton"
+          className="button asyncButton"
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async

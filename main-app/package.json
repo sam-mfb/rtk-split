@@ -23,7 +23,8 @@
     "@babel/plugin-transform-react-jsx": "~7.16.5",
     "autoprefixer": "~10.4.0",
     "@babel/core": "~7.16.5",
-    "postcss": "~8.4.5"
+    "postcss": "~8.4.5",
+    "multiplier": "workspace:*"
   },
   "scripts": {
     "start": "react-scripts start",
